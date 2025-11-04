@@ -112,8 +112,8 @@ if __name__ == "__main__":
 
     random.seed(444)
     parser = argparse.ArgumentParser()
-    parser.add_argument("-p", "--nprod", type=int, default=5)
-    parser.add_argument("-c", "--ncon", type=int, default=10)
+    parser.add_argument("-p", "--nprod", type=int, default=3)
+    parser.add_argument("-c", "--ncon", type=int, default=5)
     ns = parser.parse_args()
     start = time.perf_counter()
     asyncio.run(main(**ns.__dict__))
