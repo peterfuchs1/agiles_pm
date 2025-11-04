@@ -13,9 +13,15 @@ jobs:
       - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
       - run: echo "🖥️ The workflow is now ready to test your code on the runner."
       - name: List files in the repository
-        run: |
-          pwd
-          ls ${{ github.workspace }}
+      - uses: actions/setup-java@v5
+        with:
+            distribution: 'temurin' # See 'Supported distributions' for available options
+            java-version: '21'
+            cache: 'maven'
+            cache-dependency-path: 'backend/pom.xml'
+      - run: |
+            pwd
+            ls ${{ github.workspace }}
       - run: |
           java HelloWorld.java
       - run: echo "🍏 This job's status is ${{ job.status }}."
