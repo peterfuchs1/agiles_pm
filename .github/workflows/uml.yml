@@ -16,7 +16,8 @@ jobs:
         skip-dirs: '.git'
         log-level: 'info'
     - name: Print the rendered files
-      run: echo "The following files were generated: ${{ steps.render.outputs.rendered-files }}"
+      run: |
+        echo "The following files were generated: ${{ steps.render.outputs.rendered-files }}"
     - uses: EndBug/add-and-commit@v7
       with:
         author_name: github-actions
