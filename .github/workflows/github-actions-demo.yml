@@ -18,10 +18,6 @@ jobs:
             java-version: '21'
             cache: 'maven'
             cache-dependency-path: 'backend/pom.xml'
-      - name: List files in the repository
-      - run: |
-            pwd
-            ls ${{ github.workspace }}
       - run: |
           java HelloWorld.java
       - run: echo "🍏 This job's status is ${{ job.status }}."
