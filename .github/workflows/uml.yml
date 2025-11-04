@@ -1,19 +1,25 @@
 name: generate plantuml
 on: push
 jobs:
-  generate_plantuml:
+  render_plantuml:
     runs-on: ubuntu-latest
-    name: plantuml
+    name: Render PlantUML files
     steps:
-    - name: checkout
-      uses: actions/checkout@v1
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Render PlantUML files
+      uses: ghcr.io/racklet/render-plantuml-action@v1
+      id: render
       with:
-        fetch-depth: 1
-    - name: plantuml
-      id: plantuml
-      uses: grassedge/generate-plantuml-action@v1.5
+        formats: 'svg'
+        sub-dirs: './uml'
+        skip-dirs: '.git'
+        log-level: 'info'
+    - name: Print the rendered files
+      run: echo "The following files were generated: ${{ steps.render.outputs.rendered-files }}"
+    - uses: EndBug/add-and-commit@v7
       with:
-        path: 'uml'
-        message: "Render PlantUML files"
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        author_name: github-actions
+        author_email: 41898282+github-actions[bot]@users.noreply.github.com
+        message: 'Automatically render PlantUML files'
+        add: "${{ steps.render.outputs.rendered-files }}"
