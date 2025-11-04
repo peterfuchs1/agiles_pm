@@ -13,10 +13,7 @@ jobs:
       id: plantuml
       uses: grassedge/generate-plantuml-action@v1.5
       with:
-        formats: 'svg'
-        sub-dirs: './uml'
-        skip-dirs: '.git'
-        log-level: 'info'
+        path: './uml'
         message: "Render PlantUML files"
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
