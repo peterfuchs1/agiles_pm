@@ -75,7 +75,7 @@ async def produce(name: int, q: asyncio.Queue) -> None:
     :param q: Queue to put the element into
     :return: None
     """
-    n = random.randint(0, 10)
+    n = random.randint(1, 10)
     for _ in it.repeat(None, n):  # Synchronous loop for each single producer
         await randsleep(caller=f"Producer {name}")
         i = await makeitem()
@@ -112,7 +112,7 @@ if __name__ == "__main__":
 
     random.seed(444)
     parser = argparse.ArgumentParser()
-    parser.add_argument("-p", "--nprod", type=int, default=3)
+    parser.add_argument("-p", "--nprod", type=int, default=2)
     parser.add_argument("-c", "--ncon", type=int, default=5)
     ns = parser.parse_args()
     start = time.perf_counter()
