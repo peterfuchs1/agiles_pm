@@ -1,0 +1,6 @@
+@startuml
+[*] -> Schlafe
+schlafe -> Wach
+Wach -> Zaehnegeputzt
+Zaehnegeputzt -> [*]
+@enduml
